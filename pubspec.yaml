@@ -41,6 +41,8 @@ dev_dependencies:
   riverpod_generator: ^2.6.3
   riverpod_lint: ^2.6.3
 flutter:
+  assets:
+    - assets/images/ribbon.svg
   uses-material-design: true
 flutter_icons: 
   image_path_android: assets/launcher_icon/android_icon.png
