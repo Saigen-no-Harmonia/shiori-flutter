@@ -46,3 +46,6 @@ app.*.map.json
 
 .env
 *env.g.dart
+
+/flutter_mvvm_riverpod_sample
+/shiori-ios
