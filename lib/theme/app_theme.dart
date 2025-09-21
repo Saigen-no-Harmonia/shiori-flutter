@@ -49,7 +49,7 @@ class AppTheme {
     fontWeight: FontWeight.normal,
   );
 
-  static final titleBold = GoogleFonts.notoSerifJpe(
+  static final titleBold = GoogleFonts.notoSerifJp(
     fontSize: 28,
     fontWeight: FontWeight.bold,
   );
