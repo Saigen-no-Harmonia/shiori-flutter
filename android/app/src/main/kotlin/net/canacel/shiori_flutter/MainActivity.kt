@@ -1,4 +1,4 @@
-package com.example.shiori_flutter
+package net.canacel.shiori_flutter
 
 import io.flutter.embedding.android.FlutterActivity
 
