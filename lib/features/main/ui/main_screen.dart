@@ -95,7 +95,6 @@ class _MainScreenState extends ConsumerState<MainScreen> {
         stateManagement: true,
         hideNavigationBarWhenKeyboardAppears: true,
         decoration: const NavBarDecoration(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
           colorBehindNavBar: AppColors.white,
         ),
         popBehaviorOnSelectedNavBarItemPress: PopBehavior.all,
