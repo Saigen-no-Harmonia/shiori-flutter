@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 import 'routing/router.dart';
 import 'theme/app_colors.dart';
 
 void main() {
+  initializeDateFormatting('ja');
   runApp(
     const ProviderScope(
       child: ShioriApp()

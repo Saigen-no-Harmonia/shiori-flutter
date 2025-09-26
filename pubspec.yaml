@@ -20,6 +20,7 @@ dependencies:
   go_router: ^14.6.2
   google_fonts: ^6.3.1
   hugeicons: ^0.0.7
+  intl: ^0.19.0
   json_annotation: ^4.9.0
   ming_cute_icons: ^0.0.7
   package_info_plus: ^9.0.0
@@ -44,7 +45,7 @@ dev_dependencies:
   # riverpod_lint: ^2.6.3 envied_generatorが動かなくなるためコメントアウト
 flutter:
   assets:
-    - assets/images/ribbon.svg
+    - assets/images/ribbon.png
   uses-material-design: true
 flutter_icons: 
   image_path_android: assets/launcher_icon/android_icon.png
