@@ -46,6 +46,12 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/ribbon.png
+  fonts:
+    - family: NotoSerifJP
+      fonts:
+        - asset: assets/fonts/NotoSerifJP-Regular.ttf
+        - asset: assets/fonts/NotoSerifJP-Bold.ttf
+          weight: 700
   uses-material-design: true
 flutter_icons: 
   image_path_android: assets/launcher_icon/android_icon.png

@@ -4,53 +4,65 @@ import 'package:google_fonts/google_fonts.dart';
 class AppTheme {
   AppTheme._();
 
-  static final bodyBold = GoogleFonts.notoSerifJp(
+  static const String _fontFamily = 'NotoSerifJP';
+
+  static final bodyBold = TextStyle(
     fontSize: 17,
     fontWeight: FontWeight.bold,
+    fontFamily: _fontFamily,
   );
 
-  static final body = GoogleFonts.notoSerifJp(
+  static final body = TextStyle(
     fontSize: 17,
     fontWeight: FontWeight.normal,
+    fontFamily: _fontFamily,
   );
 
-  static final calloutBold = GoogleFonts.notoSerifJp(
+  static final calloutBold = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.bold,
+    fontFamily: _fontFamily,
   );
 
-  static final caption = GoogleFonts.notoSerifJp(
+  static final caption = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.normal,
+    fontFamily: _fontFamily,
   );
 
-  static final headline = GoogleFonts.notoSerifJp(
+  static final headline = TextStyle(
     fontSize: 17,
     fontWeight: FontWeight.normal,
+    fontFamily: _fontFamily,
   );
 
-  static final largeTitleBold = GoogleFonts.notoSerifJp(
+  static final largeTitleBold = TextStyle(
     fontSize: 34,
     fontWeight: FontWeight.bold,
+    fontFamily: _fontFamily,
   );
 
-  static final title2Bold = GoogleFonts.notoSerifJp(
+  static final title2Bold = TextStyle(
     fontSize: 22,
     fontWeight: FontWeight.bold,
+    fontFamily: _fontFamily,
   );
 
-  static final title3Bold = GoogleFonts.notoSerifJp(
+  static final title3Bold = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.bold,
+    fontFamily: _fontFamily,
   );
 
-  static final title3 = GoogleFonts.notoSerifJp(
+  static final title3 = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.normal,
+    fontFamily: _fontFamily,
   );
 
-  static final titleBold = GoogleFonts.notoSerifJp(
+  static final titleBold = TextStyle(
     fontSize: 28,
     fontWeight: FontWeight.bold,
+    fontFamily: _fontFamily,
   );
 }

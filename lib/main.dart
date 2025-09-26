@@ -27,7 +27,7 @@ class ShioriApp extends ConsumerWidget {
           seedColor: AppColors.primary,
         ),
         useMaterial3: true,
-        textTheme: GoogleFonts.notoSerifJpTextTheme(),
+        // textTheme: GoogleFonts.notoSerifJpTextTheme(),
       ),
       routerConfig: router,
       debugShowCheckedModeBanner: false,
