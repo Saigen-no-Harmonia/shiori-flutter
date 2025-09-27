@@ -1,26 +1,28 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'access_view_model.dart';
+part of 'profile_repository.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$accessViewModelHash() => r'c8f3cd076575ea960ab19bedee1b39df28e0413a';
+String _$profileRepositoryHash() => r'9c32cb1b0987a543088b90eaad3f41790f321dd1';
 
-/// See also [AccessViewModel].
-@ProviderFor(AccessViewModel)
-final accessViewModelProvider =
-    AsyncNotifierProvider<AccessViewModel, AccessState>.internal(
-      AccessViewModel.new,
-      name: r'accessViewModelProvider',
+/// See also [profileRepository].
+@ProviderFor(profileRepository)
+final profileRepositoryProvider =
+    AutoDisposeProvider<ProfileRepository>.internal(
+      profileRepository,
+      name: r'profileRepositoryProvider',
       debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
           ? null
-          : _$accessViewModelHash,
+          : _$profileRepositoryHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
 
-typedef _$AccessViewModel = AsyncNotifier<AccessState>;
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef ProfileRepositoryRef = AutoDisposeProviderRef<ProfileRepository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

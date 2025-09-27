@@ -1,26 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'access_view_model.dart';
+part of 'profile_view_model.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$accessViewModelHash() => r'c8f3cd076575ea960ab19bedee1b39df28e0413a';
+String _$profileViewModelHash() => r'd8af9c4233cf4bd042813528a3cbe2ee804d6583';
 
-/// See also [AccessViewModel].
-@ProviderFor(AccessViewModel)
-final accessViewModelProvider =
-    AsyncNotifierProvider<AccessViewModel, AccessState>.internal(
-      AccessViewModel.new,
-      name: r'accessViewModelProvider',
+/// See also [ProfileViewModel].
+@ProviderFor(ProfileViewModel)
+final profileViewModelProvider =
+    AsyncNotifierProvider<ProfileViewModel, ProfileState>.internal(
+      ProfileViewModel.new,
+      name: r'profileViewModelProvider',
       debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
           ? null
-          : _$accessViewModelHash,
+          : _$profileViewModelHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
 
-typedef _$AccessViewModel = AsyncNotifier<AccessState>;
+typedef _$ProfileViewModel = AsyncNotifier<ProfileState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
