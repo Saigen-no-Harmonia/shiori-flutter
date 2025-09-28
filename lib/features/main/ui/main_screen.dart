@@ -9,14 +9,6 @@ import '../../gallery/ui/gallery_screen.dart';
 import '../../access/ui/access_screen.dart';
 import '../../about/ui/about_screen.dart';
 
-const List<Widget> _screens = [
-  GreetingScreen(),
-  ProfileScreen(),
-  GalleryScreen(),
-  AccessScreen(),
-  AboutScreen(),
-];
-
 class MainScreen extends ConsumerStatefulWidget {
   const MainScreen({super.key});
 
@@ -25,19 +17,16 @@ class MainScreen extends ConsumerStatefulWidget {
 }
 
 class _MainScreenState extends ConsumerState<MainScreen> {
-  late PersistentTabController _controller;
+  int _currentIndex = 0;
 
-  @override
-  void initState() {
-    super.initState();
-    _controller = PersistentTabController(initialIndex: 0);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+  // 全ての画面を事前に作成して保持
+  final List<Widget> _screens = const [
+    GreetingScreen(),
+    ProfileScreen(),
+    GalleryScreen(),
+    AccessScreen(),
+    AboutScreen(),
+  ];
 
   List<PersistentBottomNavBarItem> _navBarItems(
     BuildContext context,
@@ -71,7 +60,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.info),
-        title: 'アプリについて',
+        title: 'アプリ情報',
         activeColorPrimary: selectedColor,
         inactiveColorPrimary: unselectedColor,
       ),
@@ -82,31 +71,63 @@ class _MainScreenState extends ConsumerState<MainScreen> {
   Widget build(BuildContext context) {
     final selectedColor = AppColors.primary;
     final unselectedColor = AppColors.inactive;
+    
     return Scaffold(
-      body: PersistentTabView(
-        context,
-        controller: _controller,
-        screens: _screens,
-        items: _navBarItems(context, selectedColor, unselectedColor),
-        confineToSafeArea: true,
-        backgroundColor: AppColors.white,
-        handleAndroidBackButtonPress: true,
-        resizeToAvoidBottomInset: true,
-        stateManagement: true,
-        hideNavigationBarWhenKeyboardAppears: true,
-        decoration: const NavBarDecoration(
-          colorBehindNavBar: AppColors.white,
+      body: IndexedStack(
+        index: _currentIndex,
+        children: _screens,
+      ),
+      bottomNavigationBar: Container(
+        decoration: const BoxDecoration(
+          color: AppColors.white,
         ),
-        popBehaviorOnSelectedNavBarItemPress: PopBehavior.all,
-        animationSettings: const NavBarAnimationSettings(
-          navBarItemAnimation: ItemAnimationSettings(
-            duration: Duration(milliseconds: 400),
-          ),
-          screenTransitionAnimation: ScreenTransitionAnimationSettings(
-            animateTabTransition: false,
+        child: SafeArea(
+          child: Container(
+            height: 60,
+            child: Row(
+              children: _navBarItems(context, selectedColor, unselectedColor)
+                  .asMap()
+                  .entries
+                  .map((entry) {
+                final index = entry.key;
+                final item = entry.value;
+                final isSelected = index == _currentIndex;
+                
+                return Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _currentIndex = index;
+                      });
+                    },
+                    child: Container(
+                      color: Colors.transparent,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            (item.icon as Icon).icon,
+                            color: isSelected ? selectedColor : unselectedColor,
+                            size: 24,
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            item.title ?? '',
+                            style: TextStyle(
+                              color: isSelected ? selectedColor : unselectedColor,
+                              fontSize: 12,
+                              fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              }).toList(),
+            ),
           ),
         ),
-        navBarStyle: NavBarStyle.simple,
       ),
     );
   }
