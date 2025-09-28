@@ -40,17 +40,11 @@ class GreetingScreen extends ConsumerWidget {
                 CachedNetworkImage(
                   imageUrl: greetingResponse.photo.url,
                   fit: BoxFit.cover,
-                  placeholder: (context, url) => Container(
-                    color: AppColors.secondary,
-                    child: const CommonLoading(),
-                  ),
-                  errorWidget: (context, url, error) => Container(
-                    color: AppColors.secondary,
-                    child: const Icon(
-                      Icons.image,
-                      size: 100,
-                      color: AppColors.white,
-                    ),
+                  placeholder: (context, url) => CommonLoading(),
+                  errorWidget: (context, url, error) => Icon(
+                    Icons.image,
+                    size: 100,
+                    color: AppColors.white,
                   ),
                 ),
                 Container(
