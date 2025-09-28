@@ -23,7 +23,7 @@ class ProfileRepository {
 
   Future<Families> getProfile() async {
     try {
-      final response = await apiClient.get<Map<String, dynamic>>('/profile');
+      final response = await apiClient.get<Map<String, dynamic>>('/families');
       return Families.fromJson(response);
     } catch (e) {
       throw Exception('Failed to fetch profile: $e');

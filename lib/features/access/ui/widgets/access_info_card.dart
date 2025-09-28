@@ -34,7 +34,6 @@ class AccessInfoCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // タイトル部分
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -62,7 +61,6 @@ class AccessInfoCard extends StatelessWidget {
           const SizedBox(height: 12),
           const Divider(color: AppColors.tertiary),
           const SizedBox(height: 12),
-          // コンテンツ部分
           Text(
             content,
             style: AppTheme.bodyBold.copyWith(
@@ -70,7 +68,6 @@ class AccessInfoCard extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
           ),
-          // ボタン部分
           if (onTap != null && buttonText != null) ...[
             const SizedBox(height: 16),
             Center(

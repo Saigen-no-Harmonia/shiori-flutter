@@ -5,6 +5,8 @@ import '../../../theme/app_colors.dart';
 import '../../../theme/app_theme.dart';
 import '../../common/ui/widgets/common_error.dart';
 import '../../common/ui/widgets/common_loading.dart';
+import 'view_model/profile_view_model.dart';
+import 'widgets/family_profile_view.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
@@ -15,109 +17,76 @@ class ProfileScreen extends ConsumerStatefulWidget {
 
 class _ProfileScreenState extends ConsumerState<ProfileScreen>
     with SingleTickerProviderStateMixin {
-  late TabController _tabController;
-
-  // 仮のデータ（後でViewModelから取得）
-  final List<String> _families = ['ほげ家', 'ふが家'];
+  TabController? _tabController;
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: _families.length, vsync: this);
   }
 
   @override
   void dispose() {
-    _tabController.dispose();
+    _tabController?.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final profileState = ref.watch(profileViewModelProvider);
+
     return Scaffold(
       backgroundColor: AppColors.background,
-      body: SafeArea(
-        child: Column(
-          children: [
-            // タブバー部分
-            Container(
-              width: double.infinity,
-              color: AppColors.background,
-              child: TabBar(
-                isScrollable: true,
-                controller: _tabController,
-                tabAlignment: TabAlignment.center,
-                labelColor: AppColors.primary,
-                unselectedLabelColor: AppColors.textPrimary80,
-                indicatorColor: AppColors.primary,
-                indicatorWeight: 3,
-                labelStyle: AppTheme.bodyBold.copyWith(
-                  fontSize: 16,
-                ),
-                unselectedLabelStyle: AppTheme.body.copyWith(
-                  fontSize: 16,
-                ),
-                tabs: _families
-                    .map((family) => Tab(
-                          text: family,
-                          height: 48,
-                        ))
-                    .toList(),
-              ),
-            ),
-            // タブビュー部分
-            Expanded(
-              child: TabBarView(
-                controller: _tabController,
-                children: _families
-                    .map((family) => _buildFamilyProfile(family))
-                    .toList(),
-              ),
-            ),
-          ],
+      body: profileState.when(
+        loading: () => const CommonLoading(),
+        error: (error, stack) => CommonError(
+          onRetry: () => ref.read(profileViewModelProvider.notifier).refresh(),
         ),
-      ),
-    );
-  }
-
-  Widget _buildFamilyProfile(String familyName) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // 仮のコンテンツ
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              color: AppColors.white,
-              borderRadius: BorderRadius.circular(15),
-              border: Border.all(
-                color: AppColors.tertiary,
-                width: 1,
-              ),
-            ),
+        data: (state) {
+          final families = state.families.families;
+          
+          if (_tabController == null || _tabController!.length != families.length) {
+            _tabController?.dispose();
+            _tabController = TabController(length: families.length, vsync: this);
+          }
+          return SafeArea(
             child: Column(
               children: [
-                Text(
-                  '$familyNameのプロフィール',
-                  style: AppTheme.title3Bold.copyWith(
-                    color: AppColors.textPrimary,
+                Container(
+                  width: double.infinity,
+                  color: AppColors.background,
+                  child: TabBar(
+                    controller: _tabController,
+                    labelColor: AppColors.primary,
+                    unselectedLabelColor: AppColors.textPrimary80,
+                    indicatorColor: AppColors.primary,
+                    indicatorWeight: 3,
+                    indicatorSize: TabBarIndicatorSize.tab,
+                    labelStyle: AppTheme.bodyBold.copyWith(
+                      fontSize: 16,
+                    ),
+                    unselectedLabelStyle: AppTheme.body.copyWith(
+                      fontSize: 16,
+                    ),
+                    tabs: families
+                      .map((family) => Tab(
+                            text: '${family.name}家',
+                            height: 48,
+                          ))
+                      .toList(),
                   ),
                 ),
-                const SizedBox(height: 16),
-                Text(
-                  'ここに$familyNameの詳細情報が表示されます。',
-                  style: AppTheme.body.copyWith(
-                    color: AppColors.textPrimary80,
+                Expanded(
+                  child: TabBarView(
+                    controller: _tabController,
+                    children: families
+                        .map((family) => FamilyProfileView(family: family))
+                        .toList(),
                   ),
-                  textAlign: TextAlign.center,
                 ),
               ],
             ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }
