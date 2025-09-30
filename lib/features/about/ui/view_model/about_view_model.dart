@@ -23,8 +23,21 @@ class AboutViewModel extends _$AboutViewModel {
     );
   }
 
-  Future<void> openLicense() async {
-    debugPrint('ライセンス情報を開く');
+  Future<void> openLicense(BuildContext context) async {
+    showLicensePage(
+      context: context,
+      applicationName: 'しおり',
+      applicationVersion: getVersionText(),
+      applicationIcon: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Image.asset(
+          'assets/images/ribbon.png', // アプリアイコンを表示
+          width: 48,
+          height: 48,
+        ),
+      ),
+      applicationLegalese: '© 2024 Saigen-no-Harmonia',
+    );
   }
 
   Future<void> openSourceCodeFlutter() async {

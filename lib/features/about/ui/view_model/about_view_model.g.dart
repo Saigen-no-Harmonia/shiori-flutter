@@ -6,7 +6,7 @@ part of 'about_view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$aboutViewModelHash() => r'6e9adf7bb78f3fe02b94386f119a7df415440417';
+String _$aboutViewModelHash() => r'050b4796f197cd7aab80628c0c8f9fd6f93d241c';
 
 /// See also [AboutViewModel].
 @ProviderFor(AboutViewModel)

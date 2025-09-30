@@ -44,7 +44,7 @@ class AboutScreen extends ConsumerWidget {
                       title: 'ライセンス情報',
                       onTap: () => ref
                         .read(aboutViewModelProvider.notifier)
-                        .openLicense()
+                        .openLicense(context)
                     ),
                     AboutListItem(
                       icon: '📱',
