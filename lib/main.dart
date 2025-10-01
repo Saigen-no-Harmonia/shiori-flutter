@@ -10,7 +10,7 @@ void main() {
   initializeDateFormatting('ja');
   runApp(
     const ProviderScope(
-      child: ShioriApp()
+      child: ShioriApp(),
     ),
   );
 }
@@ -21,15 +21,13 @@ class ShioriApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
-      title: 'Shiori',
+      title: 'しおり',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: AppColors.primary,
-        ),
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
         useMaterial3: true,
-        // textTheme: GoogleFonts.notoSerifJpTextTheme(),
+        fontFamily: GoogleFonts.notoSerifJp().fontFamily,
       ),
-      routerConfig: router,
+      routerConfig: ref.watch(routerProvider),
       debugShowCheckedModeBanner: false,
     );
   }
